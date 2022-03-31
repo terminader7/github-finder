@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import styled from "styled-components";
-import { faMugSaucer } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 const NavbarContainer = styled.nav`
@@ -11,11 +10,6 @@ const NavbarContainer = styled.nav`
 `;
 
 export class Navbar extends Component {
-  static defaultProps = {
-    title: "GithubFinder",
-    icon: { faMugSaucer },
-  };
-
   static propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,

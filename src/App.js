@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Navbar from "./components/Navbar";
+import Users from "./components/users/Users";
+import { faMugSaucer } from "@fortawesome/free-solid-svg-icons";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <Navbar title="Github Finder" icon={faMugSaucer} />
+        <Users />
       </div>
     );
   }
