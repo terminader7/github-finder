@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Users from "./components/users/Users";
 import { Search } from "./components/users/Search";
 import Alert from "./components/Alert";
+import About from "./components/pages/About";
 
 import axios from "axios";
 import "./App.css";
@@ -72,6 +73,7 @@ class App extends Component {
                   </Fragment>
                 }
               />
+              <Route path="/about" component={About} />
             </Routes>
           </div>
         </div>
