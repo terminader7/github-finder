@@ -1,5 +1,4 @@
 import React, { Fragment, Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Users from "./components/users/Users";
@@ -27,15 +26,14 @@ class App extends Component {
   // }
 
   //Search Github Users
-  searchUsers = async (text) => {
+  searchUsers = (text) => {
     const reqURL = `https://api.github.com/search/users?q=${text}&client_id=
     ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
     ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
-    console.log(reqURL);
 
-    const res = await axios.get(reqURL);
-
-    this.setState({ users: res.data.items, loading: false });
+    axios.get(reqURL).then((data) => {
+      this.setState({ users: data.data.items, loading: false });
+    });
   };
 
   //Clears users from state
@@ -53,31 +51,19 @@ class App extends Component {
   render() {
     const { users, loading } = this.state;
     return (
-      <Router>
-        <div className="App">
-          <Navbar />
-          <div className="container">
-            <Alert alert={this.state.alert} />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Fragment>
-                    <Search
-                      searchUsers={this.searchUsers}
-                      clearUsers={this.clearUsers}
-                      showClear={users.length > 0 ? true : false}
-                      setAlert={this.setAlert}
-                    />
-                    <Users loading={loading} users={users} />
-                  </Fragment>
-                }
-              />
-              <Route path="/about" component={About} />
-            </Routes>
-          </div>
+      <div className="App">
+        <Navbar />
+        <div className="container">
+          <Alert alert={this.state.alert} />
+          <Search
+            searchUsers={this.searchUsers}
+            clearUsers={this.clearUsers}
+            showClear={users.length > 0 ? true : false}
+            setAlert={this.setAlert}
+          />
+          <Users loading={loading} users={users} />
         </div>
-      </Router>
+      </div>
     );
   }
 }
