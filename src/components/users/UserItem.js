@@ -12,9 +12,12 @@ const UserItem = ({ user: { login, avatar_url, html_url } }) => {
       />
       <h3>{login}</h3>
       <div>
-        <a href={html_url} className="btn.btn-dark.btn-sm my-1">
+        <button
+          className="btn btn-dark btn-sm my-1"
+          onClick={() => window.open(html_url, "_blank")}
+        >
           More
-        </a>
+        </button>
       </div>
     </div>
   );
